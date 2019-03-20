@@ -3,6 +3,10 @@ MAINTAINER Krishna Murthy P Mirajkar <kpmirajkar@outlook.com>
 VOLUME /tmp
 
 COPY src /usr/app/
+
+RUN ls /usr/app/src 
+RUN ls /usr/app/
+
 COPY pom.xml /usr/app/
 RUN mvn -f /usr/app/pom.xml clean install
 
