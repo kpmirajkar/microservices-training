@@ -1,7 +1,15 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.5-jdk-8-alpine as build
 MAINTAINER Krishna Murthy P Mirajkar <kpmirajkar@outlook.com>
 VOLUME /tmp
 EXPOSE 8010
-ARG JAR_FILE=target/add-employee-0.0.1-SNAPSHOT.jar
+
+COPY src /usr/app/src
+RUN mvn -f /usr/app/src/pom.xml clean install
+
+COPY /usr/app/src/target/add-employee-0.0.1-SNAPSHOT.jar /app
+
+WORKDIR /app
+
+ARG JAR_FILE=add-employee-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} add-employee-0.0.1-SNAPSHOT.jar
 ENTRYPOINT ["java","-jar","/add-employee-0.0.1-SNAPSHOT.jar"]
