@@ -10,7 +10,6 @@ RUN ls /usr/app
 
 RUN mvn -f /usr/app/pom.xml clean install
 
-COPY --from=build /usr/app/target/add-employee-0.0.1-SNAPSHOT.jar /usr/app/add-employee-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8010
-ENTRYPOINT ["java","-jar","/usr/app/add-employee-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/app/target/add-employee-0.0.1-SNAPSHOT.jar"]
