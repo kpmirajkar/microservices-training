@@ -4,7 +4,7 @@ VOLUME /tmp
 EXPOSE 8010
 
 COPY src /usr/app/src
-COPY pom.xml /usr/app/src
+COPY pom.xml /usr/app/
 RUN mvn -f /usr/app/src/pom.xml clean install
 
 COPY /usr/app/src/target/add-employee-0.0.1-SNAPSHOT.jar /app
