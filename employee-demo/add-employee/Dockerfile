@@ -7,9 +7,9 @@ COPY src /usr/app/src
 COPY pom.xml /usr/app/
 RUN mvn -f /usr/app/pom.xml clean install
 
-COPY --from=build /usr/app/src/target/add-employee-0.0.1-SNAPSHOT.jar /usr/app/add-employee-0.0.1-SNAPSHOT.jar
+COPY /usr/app/src/target/add-employee-0.0.1-SNAPSHOT.jar /usr/app/
 
-WORKDIR /app
+WORKDIR /usr/app
 
 ARG JAR_FILE=add-employee-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} add-employee-0.0.1-SNAPSHOT.jar
